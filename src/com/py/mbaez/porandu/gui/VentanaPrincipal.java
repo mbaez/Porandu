@@ -64,7 +64,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         acercaMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Mbpgsql");
+        setTitle("Porandu");
 
         toolBar.setFloatable(false);
         toolBar.setRollover(true);

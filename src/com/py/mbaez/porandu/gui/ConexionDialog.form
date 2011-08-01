@@ -45,14 +45,14 @@
                   <Component id="userTextField" alignment="0" max="32767" attributes="1"/>
                   <Component id="databaseTextField" alignment="0" max="32767" attributes="1"/>
                   <Component id="serverTextField" alignment="0" max="32767" attributes="1"/>
-                  <Component id="driverTextField" alignment="0" pref="170" max="32767" attributes="1"/>
+                  <Component id="driverTextField" alignment="0" pref="240" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="104" max="32767" attributes="0"/>
+              <EmptySpace pref="142" max="32767" attributes="0"/>
               <Component id="conectarButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -84,7 +84,7 @@
                   <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordField" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="25" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
               <Component id="conectarButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -94,24 +94,15 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="driverTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="org.postgresql.Driver"/>
+        <Property name="text" type="java.lang.String" value="com.porandu.postgresql.Driver"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="serverTextField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="localhost"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="databaseTextField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="scm"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="userTextField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="postgres"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="driverLabel">
       <Properties>
@@ -139,9 +130,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="passwordField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="postgres"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="conectarButton">
       <Properties>

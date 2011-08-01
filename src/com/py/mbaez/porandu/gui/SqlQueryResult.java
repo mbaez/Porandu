@@ -41,14 +41,14 @@ public class SqlQueryResult extends javax.swing.JPanel {
     /** Creates new form SqlQueryResult */
     public SqlQueryResult(int connexionIndex) {
         this.connexionIndex = connexionIndex;
-        try{
+        try {
             createNodes();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         initComponents();
         //loadThreeIcons();
-        
+
     }
 
     /** This method is called from within the constructor to
@@ -209,19 +209,22 @@ public class SqlQueryResult extends javax.swing.JPanel {
             //Obtiene el texto del editor
             data.add(new Object[]{this.queryEditorPane.getText()});
             //gurada el archivo
-            FileIO file = new FileIO(fileChooser.getSelectedFile().getAbsolutePath());
+            FileIO file = new FileIO(fileChooser.getSelectedFile().
+                    getAbsolutePath());
             file.saveFile(data);
         }
 
     }
 
-
     public DefaultTreeCellRenderer loadThreeIcons() {
-        ImageIcon databaseIcon = new ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/database.png"));
-        DefaultTreeCellRenderer render=  new DefaultTreeCellRenderer();
+
+        ImageIcon databaseIcon = new ImageIcon(getClass().
+                getResource("/com/py/mbaez/porandu/icon/database.png"));
+        DefaultTreeCellRenderer render = new DefaultTreeCellRenderer();
         render.setOpenIcon(databaseIcon);
         render.setClosedIcon(databaseIcon);
-        databaseIcon = new ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/table.png"));
+        databaseIcon = new ImageIcon(getClass().
+                getResource("/com/py/mbaez/porandu/icon/table.png"));
         render.setLeafIcon(databaseIcon);
         return render;
     }
@@ -236,17 +239,19 @@ public class SqlQueryResult extends javax.swing.JPanel {
         Connection conexion = PgSession.CURRENTCONEXION.get(connexionIndex);
         String nombreTablas = "%";
 
-        String tipos[]={ "TABLE"};
+        String tipos[] = {"TABLE"};
         DatabaseMetaData dbmd = conexion.getMetaData();
         ResultSet schemas = dbmd.getSchemas();
 
-        while (schemas.next()){
+        while (schemas.next()) {
             String schema = schemas.getString(schemas.findColumn("TABLE_SCHEM"));
 
             ResultSet tablas = dbmd.getTables(null, schema, nombreTablas, tipos);
             String table;
-            tableNode = new DefaultMutableTreeNode(schema);
-            rootNode.add(tableNode);
+            if(!tablas.isClosed()){
+                tableNode = new DefaultMutableTreeNode(schema);
+                rootNode.add(tableNode);
+            }
             while (tablas.next()) {
                 table = tablas.getString(tablas.findColumn("TABLE_NAME"));
 

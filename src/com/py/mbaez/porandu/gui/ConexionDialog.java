@@ -58,14 +58,8 @@ public class ConexionDialog extends javax.swing.JDialog {
         setModalityType(java.awt.Dialog.ModalityType.TOOLKIT_MODAL);
         setResizable(false);
 
-        driverTextField.setText("org.postgresql.Driver");
+        driverTextField.setText("com.porandu.postgresql.Driver");
         driverTextField.setEnabled(false);
-
-        serverTextField.setText("localhost");
-
-        databaseTextField.setText("scm");
-
-        userTextField.setText("postgres");
 
         driverLabel.setText("Driver:");
 
@@ -76,8 +70,6 @@ public class ConexionDialog extends javax.swing.JDialog {
         userLabel.setText("User:");
 
         passwordLabel.setText("Password:");
-
-        passwordField.setText("postgres");
 
         conectarButton.setText("Conectar");
         conectarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -104,12 +96,12 @@ public class ConexionDialog extends javax.swing.JDialog {
                     .addComponent(userTextField)
                     .addComponent(databaseTextField)
                     .addComponent(serverTextField)
-                    .addComponent(driverTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
+                    .addComponent(driverTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addComponent(conectarButton)
-                .addGap(97, 97, 97))
+                .addGap(129, 129, 129))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +126,7 @@ public class ConexionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(conectarButton)
                 .addContainerGap())
         );

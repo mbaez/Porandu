@@ -1,14 +1,24 @@
 package com.py.mbaez.porandu.util;
 
+import java.lang.reflect.Method;
 import java.sql.*;
 
 public class Conexion {
+    private Class parTypes[] = new Class[4];
+    private Class clazz;
+    
+    public Conexion(){
+        for(int i=0; i<parTypes.length;i++){
+            parTypes[i] = String.class;
+        }
+    }
     /**
      * @param driver es el nombre del driver del gestor que se va utilizar en este caso, postgres
      */
     public boolean cargarDriver(String driver) {
         try {
-            Class.forName(driver);
+            //Class.forName(driver);
+            clazz = Class.forName(driver);
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -25,9 +35,13 @@ public class Conexion {
      */
     public Connection conectar(String server, String BD, String user, String pass) {
         Connection con = null;
+
         try {
-            DriverManager.setLoginTimeout(20);
-            con = DriverManager.getConnection("jdbc:postgresql://" + server + ":5432/" + BD, user, pass);
+            Method method = clazz.getMethod("conectar",parTypes);
+            Object arglist[] = {server, BD, user, pass};
+
+            con = (Connection)method.invoke(clazz.newInstance(), arglist);
+
             PgSession.CURRENTCONEXION.add(con);
             PgSession.SERVER = server;
             PgSession.DATABASE = BD;
