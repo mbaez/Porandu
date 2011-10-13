@@ -14,9 +14,7 @@ package com.py.mbaez.porandu.gui;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import com.py.mbaez.porandu.util.Conexion;
-import java.sql.DatabaseMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 
 /**
  *
@@ -58,7 +56,7 @@ public class ConexionDialog extends javax.swing.JDialog {
         setModalityType(java.awt.Dialog.ModalityType.TOOLKIT_MODAL);
         setResizable(false);
 
-        driverTextField.setText("com.porandu.postgresql.Driver");
+        driverTextField.setText("org.postgresql.Driver");
         driverTextField.setEnabled(false);
 
         driverLabel.setText("Driver:");
@@ -152,6 +150,7 @@ public class ConexionDialog extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_conectarButtonActionPerformed
     private Connection conectar(Conexion conexion) {
+        conexion.cargarDriver(driverTextField.getText());
         return  conexion.conectar(serverTextField.getText(), databaseTextField.getText(),
                 userTextField.getText(), String.copyValueOf(passwordField.getPassword()));
     }

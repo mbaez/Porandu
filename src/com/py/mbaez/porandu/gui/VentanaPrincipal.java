@@ -140,7 +140,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         guardarResultadoMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         guardarResultadoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/media-floppy.png"))); // NOI18N
-        guardarResultadoMenuItem.setText("Guardar Resultado");
+        guardarResultadoMenuItem.setText("Exportar Datos");
         guardarResultadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarResultadoMenuItemActionPerformed(evt);
@@ -172,6 +172,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         procesosMenu.add(ejecutarMenuItem);
 
+        pararMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
         pararMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/agt_action_fail.png"))); // NOI18N
         pararMenuItem.setText("Parar");
         procesosMenu.add(pararMenuItem);
@@ -208,15 +209,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(sqlQueryResultTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(sqlQueryResultTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+            .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sqlQueryResultTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE))
+                .addComponent(sqlQueryResultTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
         );
 
         pack();

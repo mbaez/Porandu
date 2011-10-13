@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -237,7 +236,6 @@ public class SqlQueryResult extends javax.swing.JPanel {
         DefaultMutableTreeNode tableNode = null;
 
         Connection conexion = PgSession.CURRENTCONEXION.get(connexionIndex);
-        String nombreTablas = "%";
 
         String tipos[] = {"TABLE"};
         DatabaseMetaData dbmd = conexion.getMetaData();
@@ -246,7 +244,7 @@ public class SqlQueryResult extends javax.swing.JPanel {
         while (schemas.next()) {
             String schema = schemas.getString(schemas.findColumn("TABLE_SCHEM"));
 
-            ResultSet tablas = dbmd.getTables(null, schema, nombreTablas, tipos);
+            ResultSet tablas = dbmd.getTables(null, schema, null, tipos);
             String table;
             if(!tablas.isClosed()){
                 tableNode = new DefaultMutableTreeNode(schema);
@@ -254,8 +252,8 @@ public class SqlQueryResult extends javax.swing.JPanel {
             }
             while (tablas.next()) {
                 table = tablas.getString(tablas.findColumn("TABLE_NAME"));
-
-                tableNode.add(new DefaultMutableTreeNode(table));
+                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(table);
+                tableNode.add(nodo);
             }
         }
 

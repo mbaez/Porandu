@@ -94,7 +94,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="driverTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="com.porandu.postgresql.Driver"/>
+        <Property name="text" type="java.lang.String" value="org.postgresql.Driver"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>

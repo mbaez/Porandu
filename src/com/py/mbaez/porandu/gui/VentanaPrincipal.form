@@ -56,7 +56,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/py/mbaez/porandu/icon/media-floppy.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Guardar Resultado"/>
+                <Property name="text" type="java.lang.String" value="Exportar Datos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarResultadoMenuItemActionPerformed"/>
@@ -99,6 +99,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="pararMenuItem">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="ESCAPE"/>
+                </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/com/py/mbaez/porandu/icon/agt_action_fail.png"/>
                 </Property>
@@ -168,8 +171,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="toolBar" alignment="0" min="-2" pref="568" max="-2" attributes="0"/>
-          <Component id="sqlQueryResultTabbedPane" alignment="0" pref="568" max="32767" attributes="0"/>
+          <Component id="sqlQueryResultTabbedPane" alignment="0" pref="711" max="32767" attributes="0"/>
+          <Component id="toolBar" alignment="0" pref="711" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -177,7 +180,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="toolBar" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="sqlQueryResultTabbedPane" pref="364" max="32767" attributes="0"/>
+              <Component id="sqlQueryResultTabbedPane" pref="539" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
