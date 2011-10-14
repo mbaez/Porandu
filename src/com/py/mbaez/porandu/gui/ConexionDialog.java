@@ -12,8 +12,10 @@
 package com.py.mbaez.porandu.gui;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import com.py.mbaez.porandu.util.Conexion;
+import com.py.mbaez.porandu.util.ConfiguracionManager;
 
 
 /**
@@ -22,10 +24,14 @@ import com.py.mbaez.porandu.util.Conexion;
  */
 public class ConexionDialog extends javax.swing.JDialog {
     private java.awt.Frame parent;
+    private Object []drivers;
+    private ConfiguracionManager config;
     /** Creates new form ConexionDialog */
     public ConexionDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.parent=parent;
+        config = new ConfiguracionManager();
+        drivers = config.getDrivers().toArray();
         initComponents();
     }
 
@@ -38,7 +44,6 @@ public class ConexionDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        driverTextField = new javax.swing.JTextField();
         serverTextField = new javax.swing.JTextField();
         databaseTextField = new javax.swing.JTextField();
         userTextField = new javax.swing.JTextField();
@@ -49,15 +54,15 @@ public class ConexionDialog extends javax.swing.JDialog {
         passwordLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         conectarButton = new javax.swing.JButton();
+        driverComboBox = new javax.swing.JComboBox();
+        puertoTextField = new javax.swing.JTextField();
+        puertoLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Conectar");
         setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         setModalityType(java.awt.Dialog.ModalityType.TOOLKIT_MODAL);
         setResizable(false);
-
-        driverTextField.setText("org.postgresql.Driver");
-        driverTextField.setEnabled(false);
 
         driverLabel.setText("Driver:");
 
@@ -76,6 +81,10 @@ public class ConexionDialog extends javax.swing.JDialog {
             }
         });
 
+        driverComboBox.setModel(new javax.swing.DefaultComboBoxModel(drivers));
+
+        puertoLabel.setText("Puerto:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,32 +92,43 @@ public class ConexionDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(driverLabel)
-                    .addComponent(passwordLabel)
-                    .addComponent(databaseLabel)
-                    .addComponent(serverLabel)
-                    .addComponent(userLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(passwordField)
-                    .addComponent(userTextField)
-                    .addComponent(databaseTextField)
-                    .addComponent(serverTextField)
-                    .addComponent(driverTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
-                .addComponent(conectarButton)
-                .addGap(129, 129, 129))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(driverLabel)
+                            .addGap(38, 38, 38)
+                            .addComponent(driverComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(41, 41, 41))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(conectarButton)
+                            .addGap(129, 129, 129)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passwordLabel)
+                            .addComponent(databaseLabel)
+                            .addComponent(serverLabel)
+                            .addComponent(userLabel)
+                            .addComponent(puertoLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .addComponent(userTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .addComponent(databaseTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .addComponent(serverTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                            .addComponent(puertoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
+                        .addGap(41, 41, 41))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(driverTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driverLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(driverLabel)
+                    .addComponent(driverComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(puertoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(puertoLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(serverTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(serverLabel))
@@ -124,7 +144,7 @@ public class ConexionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(conectarButton)
                 .addContainerGap())
         );
@@ -134,25 +154,31 @@ public class ConexionDialog extends javax.swing.JDialog {
 
     private void conectarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectarButtonActionPerformed
 
-        Conexion conexion=new Conexion();
-        if (!conexion.cargarDriver(driverTextField.getText())) {
+        Conexion conexion=new Conexion(config);
+        if (!conexion.cargarDriver((String)this.driverComboBox.getSelectedItem())) {
             JOptionPane.showMessageDialog(this, "Error al cargar el driver",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        try {
         Connection con= conectar(conexion);
-        if (con == null) {
-            JOptionPane.showMessageDialog(this, "Error al conectar con la BD",
+        }catch(SQLException sql){
+            JOptionPane.showMessageDialog(this, "ERROR:"+sql,
                     "Error de conexion", JOptionPane.ERROR_MESSAGE);
+
             return;
         }
+
         ((VentanaPrincipal)parent).addSqlQueryResultTab();
         this.dispose();
     }//GEN-LAST:event_conectarButtonActionPerformed
-    private Connection conectar(Conexion conexion) {
-        conexion.cargarDriver(driverTextField.getText());
-        return  conexion.conectar(serverTextField.getText(), databaseTextField.getText(),
-                userTextField.getText(), String.copyValueOf(passwordField.getPassword()));
+    private Connection conectar(Conexion conexion) throws SQLException {
+        //conexion.cargarDriver(driverTextField.getText());
+        return  conexion.conectar(serverTextField.getText(), 
+                                  databaseTextField.getText(),
+                                  this.puertoTextField.getText(),
+                                  userTextField.getText(),
+                                  String.copyValueOf(passwordField.getPassword()));
     }
 
 
@@ -161,10 +187,12 @@ public class ConexionDialog extends javax.swing.JDialog {
     private javax.swing.JButton conectarButton;
     private javax.swing.JLabel databaseLabel;
     private javax.swing.JTextField databaseTextField;
+    private javax.swing.JComboBox driverComboBox;
     private javax.swing.JLabel driverLabel;
-    private javax.swing.JTextField driverTextField;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel puertoLabel;
+    private javax.swing.JTextField puertoTextField;
     private javax.swing.JLabel serverLabel;
     private javax.swing.JTextField serverTextField;
     private javax.swing.JLabel userLabel;

@@ -4,18 +4,19 @@ import java.sql.*;
 
 public class Conexion {
     private static int PORT = 5432;
-    private static String JDBC_URL = "jdbc:postgresql://";
+    private String JDBC_URL = "jdbc:postgresql://";
+    private ConfiguracionManager config;
     
-    public Conexion(){
-
+    public Conexion(ConfiguracionManager config){
+        this.config = config;
     }
     /**
      * @param driver es el nombre del driver del gestor que se va utilizar en este caso, postgres
      */
     public boolean cargarDriver(String driver) {
         try {
-            //Class.forName(driver);
             Class.forName(driver);
+            JDBC_URL = config.getUrl(driver);
             return true;
         } catch (Exception e) {
             System.out.println(e);
@@ -30,22 +31,24 @@ public class Conexion {
      * @param user el usuario
      * @param pass la contrasenha 
      */
-    public Connection conectar(String server, String BD, String user, String pass) {
+    public Connection conectar(String server, String BD, String port, String user,
+           String pass) throws SQLException{
         Connection con = null;
 
-        try {
             //Method method = clazz.getMethod("conectar",parTypes);
             //Object arglist[] = {server, BD, user, pass};
-
-            con = DriverManager.getConnection( JDBC_URL + server + ":"
-					+ PORT + "/" + BD, user, pass);
+            String url = JDBC_URL.
+                    replace("$SERVER",server).
+                    replace("$PORT", port).
+                    replace("$BD",BD).
+                    replace("$USER", user).
+                    replace("$PASSWORD", pass);
+            con = DriverManager.getConnection(url);
 
             PgSession.CURRENTCONEXION.add(con);
             PgSession.SERVER = server;
             PgSession.DATABASE = BD;
-        } catch (Exception e) {
-            System.err.println(e);
-        }
+
         return con;
 
     }
