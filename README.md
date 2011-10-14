@@ -28,7 +28,7 @@ TODO
  * Mejorar los treeView's de las tablas.
  * Definir operaciones predeterminadas como select, update, delete  para las tablas.
  * Permitir la visualización y edición de procedmientos almacenados.
- * Definir vistas para crear tabla, y procedimientos almacenados.
+ * Definir vistas para crear tablas, y procedimientos almacenados.
 
 See also
 ===
