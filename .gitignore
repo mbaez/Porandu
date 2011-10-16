@@ -2,3 +2,7 @@
 *~
 *.swp
 *.class
+#carpetas a ignorar
+store/*
+build/classes/*
+dist/*
