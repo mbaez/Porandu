@@ -13,6 +13,8 @@ package com.py.mbaez.porandu.gui;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import com.py.mbaez.porandu.util.Conexion;
 import com.py.mbaez.porandu.util.ConfiguracionManager;
@@ -29,9 +31,16 @@ public class ConexionDialog extends javax.swing.JDialog {
     /** Creates new form ConexionDialog */
     public ConexionDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.parent=parent;
-        config = new ConfiguracionManager();
-        drivers = config.getDrivers().toArray();
+        try {
+            this.parent = parent;
+            config = new ConfiguracionManager();
+            drivers = config.getDrivers().toArray();
+            
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(this, "ERROR : " + ex.getMessage(),
+                    "Error al cargar porandu.conf", JOptionPane.ERROR_MESSAGE);
+           this.dispose();
+        }
         initComponents();
     }
 

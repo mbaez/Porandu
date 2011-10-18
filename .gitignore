@@ -4,5 +4,5 @@
 *.class
 #carpetas a ignorar
 store/*
-build/classes/*
+build/*
 dist/*
