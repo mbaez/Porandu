@@ -246,10 +246,10 @@ public class SqlQueryResult extends javax.swing.JPanel {
 
             ResultSet tablas = dbmd.getTables(null, schema, null, tipos);
             String table;
-            if(!tablas.isClosed()){
-                tableNode = new DefaultMutableTreeNode(schema);
-                rootNode.add(tableNode);
-            }
+            
+            tableNode = new DefaultMutableTreeNode(schema);
+            rootNode.add(tableNode);
+            
             while (tablas.next()) {
                 table = tablas.getString(tablas.findColumn("TABLE_NAME"));
                 DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(table);
