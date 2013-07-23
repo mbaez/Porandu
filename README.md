@@ -1,6 +1,6 @@
 Porandu
 ===
-Porandu, que proviene del idioma Guaraní que significa preguntar/consultar, es el nuevo nombre de [mbpgsql](http://code.google.com/p/mbpgsql),un cliente de sql simple, actualmente solo soporta postgresql y se encuentra desarrollado en java con swing.
+Porandu, que proviene del idioma Guaraní que significa preguntar/consultar, es un cliente de sql simple se encuentra desarrollado en java con swing.
 
 -------
 **Licencia** : GNU GPL.
@@ -9,8 +9,15 @@ Porandu, que proviene del idioma Guaraní que significa preguntar/consultar, es 
 
 **Mail**     : mxbg.py[aroba]gmail.com.
 
+###Bases de datos soportadas
+Actualmente Porandu se puede utilizar porandú para conectarse a las siguientes bases de datos :
+ * Postgres
+ * MySql
+ * SqlServer
+ * Oracle
+ * Sqlite
 
-Version 0.1
+Version 0.2
 ---
  * Vistas independientes por pestañas.
  * Panel inferior para la visualización de mensajes.
@@ -21,6 +28,8 @@ Version 0.1
  * Guardar query en texto plano
  * Ejecución de querys seleccionados
  * Ejecución en threads.
+ * Almacenar conexiones en el datasource.xml
+ * Soporte a multiples bases de datos.
 
 TODO
 ---
