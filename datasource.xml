@@ -1,54 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!-- ===================================================================== -->
-<!--                                                                       -->
-<!--  JBoss Server Configuration                                           -->
-<!--                                                                       -->
-<!-- ===================================================================== -->
-
-<!-- See http://www.jboss.org/community/wiki/Multiple1PC for information about local-tx-datasource -->
-<!-- $Id: postgres-ds.xml 97536 2009-12-08 14:05:07Z jesper.pedersen $ -->
 <!-- ==================================================================== -->
-<!--  Datasource config for Postgres                                      -->
+<!--  Datasource config for Porandu                                       -->
 <!-- ==================================================================== -->
-
-
 <datasources>
   <datasource>
-    <name>Test</name>
-    <connection-url>jdbc:postgresql://localhost:5432/indufar</connection-url>
+    <name>PostgreSQL</name>
+    <connection-url>jdbc:postgresql://localhost:5432/database</connection-url>
     <driver-class>org.postgresql.Driver</driver-class>
-    <user-name>postgres</user-name>
-    <password>postgres</password>
+    <user-name>user</user-name>
+    <password>password</password>
   </datasource>
 
   <datasource>
-    <name>Test2</name>
-    <connection-url>jdbc:mysql://$SERVER:$PORT/$BD</connection-url>
+    <name>MySql</name>
+    <connection-url>jdbc:mysql://localhost:3306/database</connection-url>
     <driver-class>com.mysql.jdbc.Driver</driver-class>
     <user-name>user</user-name>
     <password>password</password>
   </datasource>
 
   <datasource>
-    <name>Test3</name>
-    <connection-url>jdbc:sqlite:$SERVER/$BD</connection-url>
+    <name>Sqlite</name>
+    <connection-url>jdbc:sqlite:path_to_db_file</connection-url>
     <driver-class>org.sqlite.JDBC</driver-class>
   </datasource>
 
   <datasource>
-    <name>Test4</name>
-    <connection-url>jdbc:sqlserver://10.150.12.96:1433;databaseName=OAuth;</connection-url>
+    <name>SqlServer</name>
+    <connection-url>jdbc:sqlserver://localhost:1433;databaseName=database;</connection-url>
     <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
-    <user-name>mimundo</user-name>
-    <password>mimundo</password>
+    <user-name>user</user-name>
+    <password>password</password>
   </datasource>
 
   <datasource>
-    <name>Test5</name>
-    <connection-url>jdbc:oracle:thin:(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.10.1)(PORT=1521)))(CONNECT_DATA=(SID=ora2)))</connection-url>
+    <name>Oracle</name>
+    <connection-url>jdbc:oracle:thin:(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521)))(CONNECT_DATA=(SID=database)))</connection-url>
     <driver-class>oracle.jdbc.OracleDriver</driver-class>
-    <user-name>$USER</user-name>
-    <password>$PASSWORD</password>
+    <user-name>user</user-name>
+    <password>password</password>
   </datasource>
 </datasources>
