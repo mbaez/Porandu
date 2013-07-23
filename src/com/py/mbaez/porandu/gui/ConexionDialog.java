@@ -8,7 +8,6 @@
  *
  * Created on 12/11/2010, 12:44:49 PM
  */
-
 package com.py.mbaez.porandu.gui;
 
 import java.sql.Connection;
@@ -18,28 +17,34 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import com.py.mbaez.porandu.util.Conexion;
 import com.py.mbaez.porandu.util.ConfiguracionManager;
-
+import com.py.mbaez.porandu.util.DataSource;
+import com.py.mbaez.porandu.util.DataSourceManager;
+import com.py.mbaez.porandu.util.PgSession;
 
 /**
  *
  * @author mbaez
  */
 public class ConexionDialog extends javax.swing.JDialog {
+
     private java.awt.Frame parent;
-    private Object []drivers;
+    private Object[] drivers;
     private ConfiguracionManager config;
+    private DataSourceManager ds;
+
     /** Creates new form ConexionDialog */
     public ConexionDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         try {
             this.parent = parent;
-            config = new ConfiguracionManager();
-            drivers = config.getDrivers().toArray();
-            
+            ds = new DataSourceManager();
+            drivers = ds.getNames().toArray();
+            System.out.println(drivers.length);
+
         } catch (Exception ex) {
-           JOptionPane.showMessageDialog(this, "ERROR : " + ex.getMessage(),
-                    "Error al cargar porandu.conf", JOptionPane.ERROR_MESSAGE);
-           this.dispose();
+            JOptionPane.showMessageDialog(this, "ERROR : " + ex.getMessage(),
+                    "Error al cargar datasource.xml", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
         }
         initComponents();
     }
@@ -53,19 +58,17 @@ public class ConexionDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        serverTextField = new javax.swing.JTextField();
-        databaseTextField = new javax.swing.JTextField();
+        urlTextField = new javax.swing.JTextField();
         userTextField = new javax.swing.JTextField();
         driverLabel = new javax.swing.JLabel();
         serverLabel = new javax.swing.JLabel();
-        databaseLabel = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         conectarButton = new javax.swing.JButton();
         driverComboBox = new javax.swing.JComboBox();
-        puertoTextField = new javax.swing.JTextField();
-        puertoLabel = new javax.swing.JLabel();
+        classTextField = new javax.swing.JTextField();
+        classLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Conectar");
@@ -73,11 +76,9 @@ public class ConexionDialog extends javax.swing.JDialog {
         setModalityType(java.awt.Dialog.ModalityType.TOOLKIT_MODAL);
         setResizable(false);
 
-        driverLabel.setText("Driver:");
+        driverLabel.setText("Nombre:");
 
-        serverLabel.setText("Server:");
-
-        databaseLabel.setText("Database:");
+        serverLabel.setText("Url:");
 
         userLabel.setText("User:");
 
@@ -91,8 +92,18 @@ public class ConexionDialog extends javax.swing.JDialog {
         });
 
         driverComboBox.setModel(new javax.swing.DefaultComboBoxModel(drivers));
+        driverComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                driverComboBoxItemStateChanged(evt);
+            }
+        });
+        driverComboBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                driverComboBoxPropertyChange(evt);
+            }
+        });
 
-        puertoLabel.setText("Puerto:");
+        classLabel.setText("Driver:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,30 +112,30 @@ public class ConexionDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(driverLabel)
-                            .addGap(38, 38, 38)
-                            .addComponent(driverComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(41, 41, 41))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(conectarButton)
-                            .addGap(129, 129, 129)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordLabel)
-                            .addComponent(databaseLabel)
-                            .addComponent(serverLabel)
-                            .addComponent(userLabel)
-                            .addComponent(puertoLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(userTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(databaseTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(serverTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(puertoTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
-                        .addGap(41, 41, 41))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(passwordLabel)
+                                    .addComponent(userLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                                    .addComponent(userTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(serverLabel)
+                                    .addComponent(classLabel)
+                                    .addComponent(driverLabel))
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(driverComboBox, 0, 351, Short.MAX_VALUE)
+                                    .addComponent(urlTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                                    .addComponent(classTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))))
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(conectarButton)
+                        .addGap(187, 187, 187))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,19 +144,15 @@ public class ConexionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(driverLabel)
                     .addComponent(driverComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(puertoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(puertoLabel))
+                    .addComponent(classTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(classLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(serverTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(urlTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(serverLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(databaseTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(databaseLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userLabel))
@@ -153,9 +160,9 @@ public class ConexionDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
                 .addComponent(conectarButton)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -163,49 +170,65 @@ public class ConexionDialog extends javax.swing.JDialog {
 
     private void conectarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectarButtonActionPerformed
 
-        Conexion conexion=new Conexion(config);
-        if (!conexion.cargarDriver((String)this.driverComboBox.getSelectedItem())) {
+        Conexion conexion = new Conexion(config);
+        if (!conexion.cargarDriver(classTextField.getText())) {
             JOptionPane.showMessageDialog(this, "Error al cargar el driver",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {
-        Connection con= conectar(conexion);
-        }catch(SQLException sql){
-            JOptionPane.showMessageDialog(this, "ERROR:"+sql,
+            Connection con = conectar(conexion);
+        } catch (SQLException sql) {
+            JOptionPane.showMessageDialog(this, "ERROR:" + sql,
                     "Error de conexion", JOptionPane.ERROR_MESSAGE);
 
             return;
         }
 
-        ((VentanaPrincipal)parent).addSqlQueryResultTab();
+        ((VentanaPrincipal) parent).addSqlQueryResultTab();
         this.dispose();
     }//GEN-LAST:event_conectarButtonActionPerformed
+
+    private void driverComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_driverComboBoxPropertyChange
+        String name = (String) driverComboBox.getSelectedItem();
+        cargarDatos(name);
+        PgSession.NAME =name;
+    }//GEN-LAST:event_driverComboBoxPropertyChange
+
+    private void driverComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_driverComboBoxItemStateChanged
+        // TODO add your handling code here:
+        driverComboBoxPropertyChange(null);
+    }//GEN-LAST:event_driverComboBoxItemStateChanged
     private Connection conectar(Conexion conexion) throws SQLException {
         //conexion.cargarDriver(driverTextField.getText());
-        return  conexion.conectar(serverTextField.getText(), 
-                                  databaseTextField.getText(),
-                                  this.puertoTextField.getText(),
-                                  userTextField.getText(),
-                                  String.copyValueOf(passwordField.getPassword()));
+        return conexion.conectar(urlTextField.getText(),
+                userTextField.getText(),
+                String.copyValueOf(passwordField.getPassword()));
     }
 
-
-
+    private void cargarDatos(String name) {
+        DataSource data;
+        try {
+            data = ds.getPropertyByName(name);
+            userTextField.setText(data.getUsername());
+            passwordField.setText(data.getPassword());
+            urlTextField.setText(data.getUrl());
+            classTextField.setText(data.getDriver());
+        } catch (Exception ex) {
+            Logger.getLogger(ConexionDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel classLabel;
+    private javax.swing.JTextField classTextField;
     private javax.swing.JButton conectarButton;
-    private javax.swing.JLabel databaseLabel;
-    private javax.swing.JTextField databaseTextField;
     private javax.swing.JComboBox driverComboBox;
     private javax.swing.JLabel driverLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel puertoLabel;
-    private javax.swing.JTextField puertoTextField;
     private javax.swing.JLabel serverLabel;
-    private javax.swing.JTextField serverTextField;
+    private javax.swing.JTextField urlTextField;
     private javax.swing.JLabel userLabel;
     private javax.swing.JTextField userTextField;
     // End of variables declaration//GEN-END:variables
-
 }

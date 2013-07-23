@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * servidor
  */
 public class PgSession {
-    public static String SERVER;
-    public static String DATABASE;
+    public static String NAME;
     public static ArrayList<Connection> CURRENTCONEXION=new ArrayList<Connection>();
 }

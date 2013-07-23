@@ -33,35 +33,38 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="driverLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="driverComboBox" min="-2" pref="211" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="userLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="passwordField" alignment="0" pref="351" max="32767" attributes="1"/>
+                                  <Component id="userTextField" alignment="0" pref="351" max="32767" attributes="1"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="serverLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="classLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="driverLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="driverComboBox" alignment="0" pref="351" max="32767" attributes="0"/>
+                                  <Component id="urlTextField" alignment="0" pref="351" max="32767" attributes="1"/>
+                                  <Component id="classTextField" alignment="0" pref="351" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="conectarButton" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="databaseLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="serverLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="userLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="puertoLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="passwordField" alignment="0" pref="211" max="32767" attributes="1"/>
-                          <Component id="userTextField" alignment="0" pref="211" max="32767" attributes="1"/>
-                          <Component id="databaseTextField" alignment="0" pref="211" max="32767" attributes="1"/>
-                          <Component id="serverTextField" alignment="0" pref="211" max="32767" attributes="1"/>
-                          <Component id="puertoTextField" alignment="0" pref="211" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="conectarButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -75,22 +78,17 @@
                   <Component id="driverLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="driverComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="puertoTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="puertoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="classTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="classLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="serverTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="urlTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="serverLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="databaseTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="databaseLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="userTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="userLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -100,33 +98,26 @@
                   <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordField" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Component id="conectarButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="serverTextField">
-    </Component>
-    <Component class="javax.swing.JTextField" name="databaseTextField">
+    <Component class="javax.swing.JTextField" name="urlTextField">
     </Component>
     <Component class="javax.swing.JTextField" name="userTextField">
     </Component>
     <Component class="javax.swing.JLabel" name="driverLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Driver:"/>
+        <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="serverLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Server:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="databaseLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Database:"/>
+        <Property name="text" type="java.lang.String" value="Url:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="userLabel">
@@ -155,12 +146,16 @@
           <Connection code="new javax.swing.DefaultComboBoxModel(drivers)" type="code"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="driverComboBoxItemStateChanged"/>
+        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="driverComboBoxPropertyChange"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="puertoTextField">
+    <Component class="javax.swing.JTextField" name="classTextField">
     </Component>
-    <Component class="javax.swing.JLabel" name="puertoLabel">
+    <Component class="javax.swing.JLabel" name="classLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Puerto:"/>
+        <Property name="text" type="java.lang.String" value="Driver:"/>
       </Properties>
     </Component>
   </SubComponents>

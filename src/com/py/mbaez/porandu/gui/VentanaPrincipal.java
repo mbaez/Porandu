@@ -279,10 +279,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int tabIndex = sqlQueryResultTabbedPane.getSelectedIndex();
         String title = sqlQueryResultTabbedPane.getTitleAt(tabIndex);
-        StringTokenizer  tokens = new StringTokenizer(title,":");
-
-        PgSession.SERVER = tokens.nextToken();
-        PgSession.DATABASE = tokens.nextToken();
+        PgSession.NAME = title;
         PgSession.CURRENTCONEXION.add(PgSession.CURRENTCONEXION.get(tabIndex));
         addSqlQueryResultTab();
         
@@ -296,8 +293,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             sqlQueryResultTabbedPane.setTabComponentAt(0, new AddTabbedHeader(sqlQueryResultTabbedPane, this));
         }
 
-        String title = PgSession.SERVER;
-        title += ":" + PgSession.DATABASE;
+        String title = PgSession.NAME;
         SqlQueryResult tab = new SqlQueryResult(connexionIndex);
         sqlQueryResultTabbedPane.add(tab, connexionIndex);
         sqlQueryResultTabbedPane.setTitleAt(connexionIndex, title);
