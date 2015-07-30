@@ -8,7 +8,7 @@
  *
  * Created on 12/11/2010, 12:44:49 PM
  */
-package com.py.mbaez.porandu.gui;
+package com.py.mbaez.porandu.views;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,10 +16,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import com.py.mbaez.porandu.util.Conexion;
-import com.py.mbaez.porandu.util.ConfiguracionManager;
+import com.py.mbaez.porandu.managers.ConfiguracionManager;
 import com.py.mbaez.porandu.util.DataSource;
-import com.py.mbaez.porandu.util.DataSourceManager;
-import com.py.mbaez.porandu.util.PgSession;
+import com.py.mbaez.porandu.managers.DataSourceManager;
+import com.py.mbaez.porandu.managers.SessionManager;
 
 /**
  *
@@ -192,7 +192,7 @@ public class ConexionDialog extends javax.swing.JDialog {
     private void driverComboBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_driverComboBoxPropertyChange
         String name = (String) driverComboBox.getSelectedItem();
         cargarDatos(name);
-        PgSession.NAME =name;
+        SessionManager.NAME =name;
     }//GEN-LAST:event_driverComboBoxPropertyChange
 
     private void driverComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_driverComboBoxItemStateChanged

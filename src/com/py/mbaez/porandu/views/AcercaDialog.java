@@ -9,7 +9,7 @@
  * Created on 15/11/2010, 07:46:25 AM
  */
 
-package com.py.mbaez.porandu.gui;
+package com.py.mbaez.porandu.views;
 
 /**
  *
@@ -56,10 +56,10 @@ public class AcercaDialog extends javax.swing.JDialog {
 
         jLabel2.setText("<html> Porandu es un cliente de consultas de postgresql sencillo desarrollado en java bajo la licencia GNU GPL v2</html>");
 
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15));
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setText("Email:");
 
-        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15));
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel4.setText("Autor:");
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N

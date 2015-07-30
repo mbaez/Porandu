@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.py.mbaez.porandu.util;
+package com.py.mbaez.porandu.managers;
 
 import java.io.File;
 import java.io.FileInputStream;

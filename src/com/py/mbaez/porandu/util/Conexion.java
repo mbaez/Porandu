@@ -1,5 +1,7 @@
 package com.py.mbaez.porandu.util;
 
+import com.py.mbaez.porandu.managers.ConfiguracionManager;
+import com.py.mbaez.porandu.managers.SessionManager;
 import java.sql.*;
 
 public class Conexion {
@@ -44,7 +46,7 @@ public class Conexion {
             con = DriverManager.getConnection(urlConnection, user,pass);
         }
         
-        PgSession.CURRENTCONEXION.add(con);
+        SessionManager.CURRENTCONEXION.add(con);
 
         return con;
     }

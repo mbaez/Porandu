@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.py.mbaez.porandu.util;
+package com.py.mbaez.porandu.components;
 
-import com.py.mbaez.porandu.gui.ConexionDialog;
-import com.py.mbaez.porandu.gui.SqlQueryResult;
-import com.py.mbaez.porandu.gui.VentanaPrincipal;
+import com.py.mbaez.porandu.views.ConexionDialog;
+import com.py.mbaez.porandu.views.SqlQueryResult;
+import com.py.mbaez.porandu.views.VentanaPrincipal;
 import java.awt.Component;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;

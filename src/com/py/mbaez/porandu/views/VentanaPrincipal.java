@@ -8,13 +8,11 @@
  *
  * Created on 11/02/2011, 10:23:41 AM
  */
-package com.py.mbaez.porandu.gui;
+package com.py.mbaez.porandu.views;
 
-import com.py.mbaez.porandu.util.AddTabbedHeader;
-import com.py.mbaez.porandu.util.PgSession;
-import com.py.mbaez.porandu.util.ClosableTabbedHeader;
-import java.sql.Connection;
-import java.util.StringTokenizer;
+import com.py.mbaez.porandu.components.AddTabbedHeader;
+import com.py.mbaez.porandu.managers.SessionManager;
+import com.py.mbaez.porandu.components.ClosableTabbedHeader;
 import javax.swing.*;
 import jsyntaxpane.DefaultSyntaxKit;
 
@@ -69,7 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         toolBar.setFloatable(false);
         toolBar.setRollover(true);
 
-        ejecutarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/exaile.png"))); // NOI18N
+        ejecutarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/start.png"))); // NOI18N
         ejecutarButton.setToolTipText("Ejecutar");
         ejecutarButton.setFocusable(false);
         ejecutarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -81,7 +79,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         toolBar.add(ejecutarButton);
 
-        pararButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/agt_action_fail.png"))); // NOI18N
+        pararButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/stop-red.png"))); // NOI18N
         pararButton.setToolTipText("Parar");
         pararButton.setFocusable(false);
         pararButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -105,7 +103,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         toolBar.add(guardarButton);
 
-        sqlQueryResultTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        sqlQueryResultTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         inicioMenu.setText("Inicio");
 
@@ -246,8 +244,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void removeTabMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTabMenuItemActionPerformed
         int tabIndex = sqlQueryResultTabbedPane.getSelectedIndex();
         sqlQueryResultTabbedPane.remove(tabIndex);
-        PgSession.CURRENTCONEXION.remove(tabIndex);
-        if (PgSession.CURRENTCONEXION.size() == 0) {
+        SessionManager.CURRENTCONEXION.remove(tabIndex);
+        if (SessionManager.CURRENTCONEXION.size() == 0) {
             sqlQueryResultTabbedPane.remove(0);
         }
     }//GEN-LAST:event_removeTabMenuItemActionPerformed
@@ -279,21 +277,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int tabIndex = sqlQueryResultTabbedPane.getSelectedIndex();
         String title = sqlQueryResultTabbedPane.getTitleAt(tabIndex);
-        PgSession.NAME = title;
-        PgSession.CURRENTCONEXION.add(PgSession.CURRENTCONEXION.get(tabIndex));
+        SessionManager.NAME = title;
+        SessionManager.CURRENTCONEXION.add(SessionManager.CURRENTCONEXION.get(tabIndex));
         addSqlQueryResultTab();
         
     }//GEN-LAST:event_duplicarConexionMenuItemActionPerformed
 
     protected void addSqlQueryResultTab() {
-        int connexionIndex = PgSession.CURRENTCONEXION.size() - 1;
+        int connexionIndex = SessionManager.CURRENTCONEXION.size() - 1;
         if (connexionIndex == 0) {
             JPanel empty = new JPanel();
             sqlQueryResultTabbedPane.add(empty, 0);
             sqlQueryResultTabbedPane.setTabComponentAt(0, new AddTabbedHeader(sqlQueryResultTabbedPane, this));
         }
 
-        String title = PgSession.NAME;
+        String title = SessionManager.NAME;
         SqlQueryResult tab = new SqlQueryResult(connexionIndex);
         sqlQueryResultTabbedPane.add(tab, connexionIndex);
         sqlQueryResultTabbedPane.setTitleAt(connexionIndex, title);

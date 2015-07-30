@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.py.mbaez.porandu.util;
+package com.py.mbaez.porandu.components;
 
 
+import com.py.mbaez.porandu.managers.SessionManager;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 
@@ -22,8 +23,8 @@ public class ClosableTabbedHeader extends TabbedHeader {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 int tabIndex = parent.getSelectedIndex();
                 parent.remove(tabIndex);
-                PgSession.CURRENTCONEXION.remove(tabIndex);
-                if(PgSession.CURRENTCONEXION.size()==0)
+                SessionManager.CURRENTCONEXION.remove(tabIndex);
+                if(SessionManager.CURRENTCONEXION.size()==0)
                     parent.remove(0);
                 else
                     parent.setSelectedIndex(tabIndex-1);

@@ -3,7 +3,9 @@
  * and open the template in the editor.
  */
 
-package com.py.mbaez.porandu.gui;
+package com.py.mbaez.porandu;
+
+import com.py.mbaez.porandu.views.VentanaPrincipal;
 
 /**
  *

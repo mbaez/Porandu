@@ -8,12 +8,12 @@
  *
  * Created on 15/02/2011, 02:56:35 PM
  */
-package com.py.mbaez.porandu.gui;
+package com.py.mbaez.porandu.views;
 
-import com.py.mbaez.porandu.util.EditableTableModel;
+import com.py.mbaez.porandu.components.EditableTableModel;
 import com.py.mbaez.porandu.util.FileIO;
-import com.py.mbaez.porandu.util.PgQuery;
-import com.py.mbaez.porandu.util.PgSession;
+import com.py.mbaez.porandu.managers.QueryManager;
+import com.py.mbaez.porandu.managers.SessionManager;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -32,7 +32,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
  */
 public class SqlQueryResult extends javax.swing.JPanel {
 
-    private PgQuery query;
+    private QueryManager query;
     private int connexionIndex;
     private Thread thread;
     private DefaultMutableTreeNode rootNode;
@@ -87,8 +87,8 @@ public class SqlQueryResult extends javax.swing.JPanel {
         queryScrollPane.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 1, 0, java.awt.SystemColor.windowBorder));
         queryScrollPane.setMinimumSize(new java.awt.Dimension(100, 100));
 
-        queryEditorPane.setContentType("text/sql");
-        queryEditorPane.setFont(new java.awt.Font("Monospaced", 0, 15));
+        queryEditorPane.setContentType("text/sql"); // NOI18N
+        queryEditorPane.setFont(new java.awt.Font("Monospaced", 0, 15)); // NOI18N
         queryScrollPane.setViewportView(queryEditorPane);
 
         karakuSplitPane.setLeftComponent(queryScrollPane);
@@ -161,7 +161,7 @@ public class SqlQueryResult extends javax.swing.JPanel {
                 sqlText = queryEditorPane.getText();
             }
 
-            query = new PgQuery(SqlQueryResult.this.connexionIndex);
+            query = new QueryManager(SqlQueryResult.this.connexionIndex);
             resulTable.setModel(query.execute(sqlText));
         } catch (SQLException e) {
 
@@ -235,7 +235,7 @@ public class SqlQueryResult extends javax.swing.JPanel {
         rootNode = new DefaultMutableTreeNode();
         DefaultMutableTreeNode tableNode = null;
 
-        Connection conexion = PgSession.CURRENTCONEXION.get(connexionIndex);
+        Connection conexion = SessionManager.CURRENTCONEXION.get(connexionIndex);
 
         String tipos[] = {"TABLE"};
         DatabaseMetaData dbmd = conexion.getMetaData();

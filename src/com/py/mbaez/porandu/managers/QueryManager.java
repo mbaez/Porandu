@@ -2,20 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.py.mbaez.porandu.util;
+package com.py.mbaez.porandu.managers;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
+import com.py.mbaez.porandu.components.EditableTableModel;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
  *
  * @author mbaez
  */
-public class PgQuery {
+public class QueryManager {
 
     private Statement st;
     private ResultSet rs;
@@ -24,9 +22,9 @@ public class PgQuery {
      *
      * @param connexionIndex
      */
-    public PgQuery(int connexionIndex) {
+    public QueryManager(int connexionIndex) {
         try {
-            st = PgSession.CURRENTCONEXION.get(connexionIndex).createStatement();
+            st = SessionManager.CURRENTCONEXION.get(connexionIndex).createStatement();
         } catch (Exception e) {
             System.err.println(e);
         }

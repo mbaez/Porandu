@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.py.mbaez.porandu.util;
+package com.py.mbaez.porandu.managers;
 
 import java.io.FileInputStream;
 import java.io.File;
@@ -11,7 +11,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.security.CodeSource;
 import javax.swing.JOptionPane;
-import com.py.mbaez.porandu.gui.*;
 /**
  *
  * @author Maximiliano Báez González <mxbg.py@gmail.com>

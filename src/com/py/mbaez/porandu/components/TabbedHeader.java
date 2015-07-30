@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.py.mbaez.porandu.util;
+package com.py.mbaez.porandu.components;
 
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
