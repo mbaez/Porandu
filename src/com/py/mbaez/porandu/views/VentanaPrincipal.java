@@ -42,22 +42,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         toolBar = new javax.swing.JToolBar();
+        conectarButton = new javax.swing.JButton();
+        duplicarConexionButton = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
+        guardarScriptButton = new javax.swing.JButton();
+        guardarTablaButton = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         ejecutarButton = new javax.swing.JButton();
         pararButton = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JToolBar.Separator();
-        guardarButton = new javax.swing.JButton();
         sqlQueryResultTabbedPane = new javax.swing.JTabbedPane();
         menuBar = new javax.swing.JMenuBar();
         inicioMenu = new javax.swing.JMenu();
         conexionMenuItem = new javax.swing.JMenuItem();
-        removeTabMenuItem = new javax.swing.JMenuItem();
         duplicarConexionMenuItem = new javax.swing.JMenuItem();
         guardarResultadoMenuItem = new javax.swing.JMenuItem();
-        salirMenuItem = new javax.swing.JMenuItem();
-        procesosMenu = new javax.swing.JMenu();
-        ejecutarMenuItem = new javax.swing.JMenuItem();
-        pararMenuItem = new javax.swing.JMenuItem();
         guardarMenuItem = new javax.swing.JMenuItem();
+        salirMenuItem = new javax.swing.JMenuItem();
         ayudaMenu = new javax.swing.JMenu();
         acercaMenuItem = new javax.swing.JMenuItem();
 
@@ -67,7 +67,57 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         toolBar.setFloatable(false);
         toolBar.setRollover(true);
 
-        ejecutarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/start.png"))); // NOI18N
+        conectarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/database_connect.png"))); // NOI18N
+        conectarButton.setToolTipText("Nueva Conexión");
+        conectarButton.setFocusable(false);
+        conectarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        conectarButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        conectarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conectarButtonActionPerformed(evt);
+            }
+        });
+        toolBar.add(conectarButton);
+
+        duplicarConexionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/database_go.png"))); // NOI18N
+        duplicarConexionButton.setToolTipText("Duplicar Conexión");
+        duplicarConexionButton.setFocusable(false);
+        duplicarConexionButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        duplicarConexionButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        duplicarConexionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                duplicarConexionButtonActionPerformed(evt);
+            }
+        });
+        toolBar.add(duplicarConexionButton);
+        toolBar.add(jSeparator3);
+
+        guardarScriptButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/script_save.png"))); // NOI18N
+        guardarScriptButton.setToolTipText("Guardar Script Sql");
+        guardarScriptButton.setFocusable(false);
+        guardarScriptButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        guardarScriptButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        guardarScriptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarScriptButtonActionPerformed(evt);
+            }
+        });
+        toolBar.add(guardarScriptButton);
+
+        guardarTablaButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/table_save.png"))); // NOI18N
+        guardarTablaButton.setToolTipText("Guardar resultado de la consulta");
+        guardarTablaButton.setFocusable(false);
+        guardarTablaButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        guardarTablaButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        guardarTablaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarTablaButtonActionPerformed(evt);
+            }
+        });
+        toolBar.add(guardarTablaButton);
+        toolBar.add(jSeparator2);
+
+        ejecutarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/lightning_go.png"))); // NOI18N
         ejecutarButton.setToolTipText("Ejecutar");
         ejecutarButton.setFocusable(false);
         ejecutarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -79,7 +129,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         toolBar.add(ejecutarButton);
 
-        pararButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/stop-red.png"))); // NOI18N
+        pararButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/lightning_delete.png"))); // NOI18N
         pararButton.setToolTipText("Parar");
         pararButton.setFocusable(false);
         pararButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -90,25 +140,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         toolBar.add(pararButton);
-        toolBar.add(jSeparator2);
-
-        guardarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/media-floppy.png"))); // NOI18N
-        guardarButton.setFocusable(false);
-        guardarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        guardarButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        guardarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarButtonActionPerformed(evt);
-            }
-        });
-        toolBar.add(guardarButton);
 
         sqlQueryResultTabbedPane.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         inicioMenu.setText("Inicio");
 
         conexionMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        conexionMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/db_add.png"))); // NOI18N
+        conexionMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/database_connect.png"))); // NOI18N
         conexionMenuItem.setText("Nueva Conexion");
         conexionMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,17 +155,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         inicioMenu.add(conexionMenuItem);
 
-        removeTabMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        removeTabMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/db_remove.png"))); // NOI18N
-        removeTabMenuItem.setText("Eliminar Conexion");
-        removeTabMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeTabMenuItemActionPerformed(evt);
-            }
-        });
-        inicioMenu.add(removeTabMenuItem);
-
         duplicarConexionMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        duplicarConexionMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/database_go.png"))); // NOI18N
         duplicarConexionMenuItem.setText("Duplicar Conexion");
         duplicarConexionMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         inicioMenu.add(duplicarConexionMenuItem);
 
         guardarResultadoMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        guardarResultadoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/media-floppy.png"))); // NOI18N
+        guardarResultadoMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/table_save.png"))); // NOI18N
         guardarResultadoMenuItem.setText("Exportar Datos");
         guardarResultadoMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,8 +175,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         inicioMenu.add(guardarResultadoMenuItem);
 
+        guardarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        guardarMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/script_save.png"))); // NOI18N
+        guardarMenuItem.setText("Guardar Script");
+        guardarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarMenuItemActionPerformed(evt);
+            }
+        });
+        inicioMenu.add(guardarMenuItem);
+
         salirMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        salirMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/exit.png"))); // NOI18N
+        salirMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/delete.png"))); // NOI18N
         salirMenuItem.setText("Salir");
         salirMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,35 +196,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         inicioMenu.add(salirMenuItem);
 
         menuBar.add(inicioMenu);
-
-        procesosMenu.setText("Propiedades");
-
-        ejecutarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        ejecutarMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/exaile.png"))); // NOI18N
-        ejecutarMenuItem.setText("Ejecutar");
-        ejecutarMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ejecutarMenuItemActionPerformed(evt);
-            }
-        });
-        procesosMenu.add(ejecutarMenuItem);
-
-        pararMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
-        pararMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/agt_action_fail.png"))); // NOI18N
-        pararMenuItem.setText("Parar");
-        procesosMenu.add(pararMenuItem);
-
-        guardarMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        guardarMenuItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/media-floppy.png"))); // NOI18N
-        guardarMenuItem.setText("Guardar ");
-        guardarMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guardarMenuItemActionPerformed(evt);
-            }
-        });
-        procesosMenu.add(guardarMenuItem);
-
-        menuBar.add(procesosMenu);
 
         ayudaMenu.setText("Ayuda");
 
@@ -213,9 +223,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(toolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sqlQueryResultTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
+                .addComponent(sqlQueryResultTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,19 +247,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panel.guardarLocalResult();
     }//GEN-LAST:event_guardarResultadoMenuItemActionPerformed
 
-    private void ejecutarMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarMenuItemActionPerformed
-        this.ejecutarButtonActionPerformed(evt);
-    }//GEN-LAST:event_ejecutarMenuItemActionPerformed
-
-    private void removeTabMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeTabMenuItemActionPerformed
-        int tabIndex = sqlQueryResultTabbedPane.getSelectedIndex();
-        sqlQueryResultTabbedPane.remove(tabIndex);
-        SessionManager.CURRENTCONEXION.remove(tabIndex);
-        if (SessionManager.CURRENTCONEXION.size() == 0) {
-            sqlQueryResultTabbedPane.remove(0);
-        }
-    }//GEN-LAST:event_removeTabMenuItemActionPerformed
-
     private void pararButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pararButtonActionPerformed
         SqlQueryResult panel = (SqlQueryResult) this.sqlQueryResultTabbedPane.getSelectedComponent();
         panel.cancelarLocalQuery();
@@ -269,9 +266,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         dialog.setVisible(true);
     }//GEN-LAST:event_acercaMenuItemActionPerformed
 
-    private void guardarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarButtonActionPerformed
+    private void guardarScriptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarScriptButtonActionPerformed
         guardarMenuItemActionPerformed(null);
-    }//GEN-LAST:event_guardarButtonActionPerformed
+    }//GEN-LAST:event_guardarScriptButtonActionPerformed
 
     private void duplicarConexionMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duplicarConexionMenuItemActionPerformed
         // TODO add your handling code here:
@@ -282,6 +279,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         addSqlQueryResultTab();
         
     }//GEN-LAST:event_duplicarConexionMenuItemActionPerformed
+
+    private void guardarTablaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarTablaButtonActionPerformed
+        guardarResultadoMenuItemActionPerformed(evt);
+    }//GEN-LAST:event_guardarTablaButtonActionPerformed
+
+    private void conectarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conectarButtonActionPerformed
+        conexionMenuItemActionPerformed(evt);
+    }//GEN-LAST:event_conectarButtonActionPerformed
+
+    private void duplicarConexionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duplicarConexionButtonActionPerformed
+        duplicarConexionMenuItemActionPerformed(evt);
+    }//GEN-LAST:event_duplicarConexionButtonActionPerformed
 
     protected void addSqlQueryResultTab() {
         int connexionIndex = SessionManager.CURRENTCONEXION.size() - 1;
@@ -303,20 +312,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem acercaMenuItem;
     private javax.swing.JMenu ayudaMenu;
+    private javax.swing.JButton conectarButton;
     private javax.swing.JMenuItem conexionMenuItem;
+    private javax.swing.JButton duplicarConexionButton;
     private javax.swing.JMenuItem duplicarConexionMenuItem;
     private javax.swing.JButton ejecutarButton;
-    private javax.swing.JMenuItem ejecutarMenuItem;
-    private javax.swing.JButton guardarButton;
     private javax.swing.JMenuItem guardarMenuItem;
     private javax.swing.JMenuItem guardarResultadoMenuItem;
+    private javax.swing.JButton guardarScriptButton;
+    private javax.swing.JButton guardarTablaButton;
     private javax.swing.JMenu inicioMenu;
     private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton pararButton;
-    private javax.swing.JMenuItem pararMenuItem;
-    private javax.swing.JMenu procesosMenu;
-    private javax.swing.JMenuItem removeTabMenuItem;
     private javax.swing.JMenuItem salirMenuItem;
     private javax.swing.JTabbedPane sqlQueryResultTabbedPane;
     private javax.swing.JToolBar toolBar;

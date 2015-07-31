@@ -45,6 +45,7 @@ public class AcercaDialog extends javax.swing.JDialog {
         setTitle("Acerca de Porandu");
         setResizable(false);
 
+        cerrarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/close.png"))); // NOI18N
         cerrarButton.setText("Cerrar");
         cerrarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,7 +55,7 @@ public class AcercaDialog extends javax.swing.JDialog {
 
         logoLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/porandu.png"))); // NOI18N
 
-        jLabel2.setText("<html> Porandu es un cliente de consultas de postgresql sencillo desarrollado en java bajo la licencia GNU GPL v2</html>");
+        jLabel2.setText("<html> Porandu es un cliente de consultas de sql sencillo desarrollado en java bajo la licencia GNU GPL v2</html>");
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel3.setText("Email:");

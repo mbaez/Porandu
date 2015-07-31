@@ -135,6 +135,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="conectarButton">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/py/mbaez/porandu/icon/connect.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Conectar"/>
       </Properties>
       <Events>

@@ -15,7 +15,7 @@
                   <KeyStroke key="Ctrl+N"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/db_add.png"/>
+                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/database_connect.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nueva Conexion"/>
               </Properties>
@@ -23,24 +23,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="conexionMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="removeTabMenuItem">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+D"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/db_remove.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Eliminar Conexion"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeTabMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="duplicarConexionMenuItem">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+T"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/database_go.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Duplicar Conexion"/>
               </Properties>
@@ -54,12 +43,26 @@
                   <KeyStroke key="Shift+Ctrl+G"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/media-floppy.png"/>
+                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/table_save.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Exportar Datos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarResultadoMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="guardarMenuItem">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+G"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/script_save.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Guardar Script"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="salirMenuItem">
@@ -68,58 +71,12 @@
                   <KeyStroke key="Ctrl+Q"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/exit.png"/>
+                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/delete.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="procesosMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Propiedades"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="ejecutarMenuItem">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="F5"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/exaile.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Ejecutar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ejecutarMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="pararMenuItem">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="ESCAPE"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/agt_action_fail.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Parar"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="guardarMenuItem">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+G"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/com/py/mbaez/porandu/icon/media-floppy.png"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Guardar "/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -179,9 +136,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="toolBar" min="-2" pref="25" max="-2" attributes="0"/>
+              <Component id="toolBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="sqlQueryResultTabbedPane" pref="539" max="32767" attributes="0"/>
+              <Component id="sqlQueryResultTabbedPane" pref="518" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -195,10 +152,70 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
       <SubComponents>
+        <Component class="javax.swing.JButton" name="conectarButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/py/mbaez/porandu/icon/database_connect.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Nueva Conexi&#xf3;n"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="conectarButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="duplicarConexionButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/py/mbaez/porandu/icon/database_go.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Duplicar Conexi&#xf3;n"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="duplicarConexionButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator3">
+        </Component>
+        <Component class="javax.swing.JButton" name="guardarScriptButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/py/mbaez/porandu/icon/script_save.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Guardar Script Sql"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarScriptButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="guardarTablaButton">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/py/mbaez/porandu/icon/table_save.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Guardar resultado de la consulta"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarTablaButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+        </Component>
         <Component class="javax.swing.JButton" name="ejecutarButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/py/mbaez/porandu/icon/start.png"/>
+              <Image iconType="3" name="/com/py/mbaez/porandu/icon/lightning_go.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Ejecutar"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -212,7 +229,7 @@
         <Component class="javax.swing.JButton" name="pararButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/py/mbaez/porandu/icon/stop-red.png"/>
+              <Image iconType="3" name="/com/py/mbaez/porandu/icon/lightning_delete.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Parar"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -221,21 +238,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pararButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
-        </Component>
-        <Component class="javax.swing.JButton" name="guardarButton">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/py/mbaez/porandu/icon/media-floppy.png"/>
-            </Property>
-            <Property name="focusable" type="boolean" value="false"/>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="verticalTextPosition" type="int" value="3"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

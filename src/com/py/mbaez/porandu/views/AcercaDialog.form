@@ -84,6 +84,9 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="cerrarButton">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/com/py/mbaez/porandu/icon/close.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cerrar"/>
       </Properties>
       <Events>
@@ -99,7 +102,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt; Porandu es un cliente de consultas de postgresql sencillo desarrollado en java bajo la licencia GNU GPL v2&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt; Porandu es un cliente de consultas de sql sencillo desarrollado en java bajo la licencia GNU GPL v2&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

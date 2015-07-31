@@ -84,6 +84,7 @@ public class ConexionDialog extends javax.swing.JDialog {
 
         passwordLabel.setText("Password:");
 
+        conectarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/py/mbaez/porandu/icon/connect.png"))); // NOI18N
         conectarButton.setText("Conectar");
         conectarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
