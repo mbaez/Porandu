@@ -7,6 +7,7 @@ package com.py.mbaez.porandu.components;
 
 import com.py.mbaez.porandu.icon.Icon;
 import com.py.mbaez.porandu.plugin.*;
+import com.py.mbaez.porandu.util.TypeEnum;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -42,13 +43,13 @@ public class TreeView extends DefaultMutableTreeNode {
 
             ResultSet tablas = dbmd.getTables(null, schema, null, tipos);
             String table;
-            TreeElement el = new TreeElement(schema, Icon.SCHEMA);
+            TreeElement el = new TreeElement(schema, TypeEnum.SCHEMA);
             tableNode = new DefaultMutableTreeNode(el);
             boolean hasChilds = false;
             while (tablas.next()) {
                 hasChilds = true;
                 table = tablas.getString(tablas.findColumn("TABLE_NAME"));
-                TreeElement tEl = new TreeElement(table, Icon.TABLE);
+                TreeElement tEl = new TreeElement(table, TypeEnum.TABLA);
                 DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(tEl);
                 tableNode.add(nodo);
             }

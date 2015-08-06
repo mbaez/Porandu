@@ -7,6 +7,7 @@ package com.py.mbaez.porandu.plugin;
 
 import com.py.mbaez.porandu.components.TreeView;
 import com.py.mbaez.porandu.icon.Icon;
+import com.py.mbaez.porandu.util.TypeEnum;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,14 +28,14 @@ public class MysqlTree extends TreeView {
     }
 
     private DefaultMutableTreeNode getTables() throws SQLException {
-        TreeElement parentEl = new TreeElement("Tablas", Icon.TABLES);
+        TreeElement parentEl = new TreeElement("Tablas", TypeEnum.TABLAS);
         DefaultMutableTreeNode parentNode = new DefaultMutableTreeNode(parentEl);
         //se obtiene la lista de tablas
         ResultSet tablas = execute(TABLES_LIST);
         String table;
         while (tablas.next()) {
             table = tablas.getString(1);
-            TreeElement el = new TreeElement(table, Icon.TABLE);
+            TreeElement el = new TreeElement(table, TypeEnum.TABLA);
             DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(el);
             parentNode.add(nodo);
         }
@@ -51,7 +52,7 @@ public class MysqlTree extends TreeView {
         //se posiciona el cursor
         rs.next();
         String databaseName = rs.getString(1);
-        TreeElement dbEl = new TreeElement(databaseName, Icon.DATABASE);
+        TreeElement dbEl = new TreeElement(databaseName, TypeEnum.BASE_DATOS);
         //se seta el nombre
         this.setUserObject(dbEl);
         this.add(getTables());

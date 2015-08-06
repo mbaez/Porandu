@@ -8,6 +8,7 @@ package com.py.mbaez.porandu.plugin;
 import com.py.mbaez.porandu.components.TreeView;
 import com.py.mbaez.porandu.icon.Icon;
 import com.py.mbaez.porandu.util.StringUtil;
+import com.py.mbaez.porandu.util.TypeEnum;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,22 +21,21 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 public class SqlServerTree extends TreeView {
 
-    private String DB_INFO = "SELECT * FROM information_schema.tables";
+    private String DB_INFO = "SELECT * FROM information_schema.tables order by TABLE_NAME";
 
     public SqlServerTree(Connection conexion) {
         super(conexion);
     }
 
-    public String getIcon(String type, boolean group) {
-        String icon = "";
+    public TypeEnum getIcon(String type, boolean group) {
+        TypeEnum icon = null;
         if (type.contains("TABLE")) {
-            icon = group ? Icon.TABLES : Icon.TABLE;
+            icon = group ? TypeEnum.TABLAS : TypeEnum.TABLA;
         } else if (type.contains("VIEW")) {
-            icon = group ? Icon.VIEWS : Icon.VIEW;
+            icon = group ? TypeEnum.VIEWS : TypeEnum.VIEW;
         } else if (type.contains("PROCEDURE")) {
-            icon = group ? Icon.FUNCTIONS : Icon.FUNCTION;
+            icon = group ? TypeEnum.FUNCIONES : TypeEnum.FUNCION;
         }
-
         return icon;
     }
 
@@ -50,7 +50,7 @@ public class SqlServerTree extends TreeView {
             String type = rs.getString("TABLE_TYPE");
             //base de datos
             if (!info.containsKey(catalog)) {
-                TreeElement el = new TreeElement(catalog, Icon.DATABASE);
+                TreeElement el = new TreeElement(catalog, TypeEnum.BASE_DATOS);
                 DefaultMutableTreeNode cNode = new DefaultMutableTreeNode(el);
                 this.add(cNode);
                 info.put(catalog, cNode);
@@ -60,7 +60,7 @@ public class SqlServerTree extends TreeView {
             //esquema info
             String key = catalog + "-" + schema;
             if (!info.containsKey(key)) {
-                TreeElement el = new TreeElement(schema, Icon.SCHEMA);
+                TreeElement el = new TreeElement(schema, TypeEnum.SCHEMA);
                 DefaultMutableTreeNode sNode = new DefaultMutableTreeNode(el);
                 cNode.add(sNode);
                 info.put(key, sNode);

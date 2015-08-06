@@ -7,10 +7,10 @@ package com.py.mbaez.porandu.plugin;
 
 import com.py.mbaez.porandu.components.TreeView;
 import com.py.mbaez.porandu.icon.Icon;
+import com.py.mbaez.porandu.util.TypeEnum;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.MessageFormat;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -27,14 +27,14 @@ public class SqliteTree extends TreeView {
     }
 
     private DefaultMutableTreeNode getTables() throws SQLException {
-        TreeElement parentEl = new TreeElement("Tablas", Icon.TABLES);
+        TreeElement parentEl = new TreeElement("Tablas", TypeEnum.TABLAS);
         DefaultMutableTreeNode parentNode = new DefaultMutableTreeNode(parentEl);
         //se obtiene la lista de tablas
         ResultSet tablas = execute(TABLES_LIST);
         String table;
         while (tablas.next()) {
             table = tablas.getString(1);
-            TreeElement el = new TreeElement(table, Icon.TABLE);
+            TreeElement el = new TreeElement(table, TypeEnum.TABLA);
             DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(el);
             parentNode.add(nodo);
         }
@@ -44,11 +44,11 @@ public class SqliteTree extends TreeView {
     private DefaultMutableTreeNode getIndex() throws SQLException {
         ResultSet rows = execute(INDEX_LIST);
         String value;
-        TreeElement parentEl = new TreeElement("Indices", Icon.INDEXES);
+        TreeElement parentEl = new TreeElement("Indices", TypeEnum.INDICES);
         DefaultMutableTreeNode parent = new DefaultMutableTreeNode(parentEl);
         while (rows.next()) {
             value = rows.getString(1);
-            TreeElement el = new TreeElement(value, Icon.INDEX);
+            TreeElement el = new TreeElement(value, TypeEnum.INDICE);
             DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(el);
             parent.add(nodo);
         }
@@ -63,7 +63,7 @@ public class SqliteTree extends TreeView {
     public void buildTree() throws SQLException {
 
         String databaseName = "Database";
-        TreeElement dbEl = new TreeElement(databaseName, Icon.DATABASE);
+        TreeElement dbEl = new TreeElement(databaseName, TypeEnum.BASE_DATOS);
         //se seta el nombre
         this.setUserObject(dbEl);
         this.add(getIndex());

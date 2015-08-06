@@ -11,6 +11,7 @@
 package com.py.mbaez.porandu.views;
 
 import com.py.mbaez.porandu.components.EditableTableModel;
+import com.py.mbaez.porandu.components.TreePopupMenu;
 import com.py.mbaez.porandu.components.TreeView;
 import com.py.mbaez.porandu.util.FileIO;
 import com.py.mbaez.porandu.managers.QueryManager;
@@ -20,12 +21,21 @@ import com.py.mbaez.porandu.plugin.PostgresTree;
 import com.py.mbaez.porandu.plugin.SchemaTreeCellRenderer;
 import com.py.mbaez.porandu.plugin.SqlServerTree;
 import com.py.mbaez.porandu.plugin.SqliteTree;
+import com.py.mbaez.porandu.plugin.TreeElement;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 
 /**
  *
@@ -49,8 +59,7 @@ public class SqlQueryResult extends javax.swing.JPanel {
             e.printStackTrace();
         }
         initComponents();
-        //loadThreeIcons();
-
+        initTreeMenu();
     }
 
     /**
@@ -219,13 +228,32 @@ public class SqlQueryResult extends javax.swing.JPanel {
     }
 
     public SchemaTreeCellRenderer loadThreeIcons() {
-//        ImageIcon databaseIcon = new ImageIcon(getClass().getResource(Icon.DATABASE));
-//        DefaultTreeCellRenderer render = new DefaultTreeCellRenderer();
-//        render.setOpenIcon(databaseIcon);
-//        render.setClosedIcon(databaseIcon);
-//        databaseIcon = new ImageIcon(getClass().getResource(Icon.TABLE));
-//        render.setLeafIcon(databaseIcon);
         return new SchemaTreeCellRenderer();
+    }
+
+    private void initTreeMenu() {
+        this.tablesTree.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                if (SwingUtilities.isRightMouseButton(e)) {
+                    int selRow = tablesTree.getRowForLocation(e.getX(), e.getY());
+                    TreePath selPath = tablesTree.getPathForLocation(e.getX(), e.getY());
+                    tablesTree.setSelectionPath(selPath);
+                    if (selRow > -1) {
+                        tablesTree.setSelectionRow(selRow);
+                    }
+                    TreePath path = tablesTree.getPathForLocation(e.getX(), e.getY());
+                    Rectangle pathBounds = tablesTree.getUI().getPathBounds(tablesTree, path);
+                    if (pathBounds != null && pathBounds.contains(e.getX(), e.getY())) {
+
+                        DefaultMutableTreeNode node = (DefaultMutableTreeNode) tablesTree.getLastSelectedPathComponent();
+                        TreeElement el = (TreeElement) node.getUserObject();
+                        System.out.println(el.getName());
+                        JPopupMenu menu = new TreePopupMenu(el);
+                        menu.show(tablesTree, pathBounds.x, pathBounds.y + pathBounds.height);
+                    }
+                }
+            }
+        });
     }
 
     /**
